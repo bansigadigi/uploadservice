@@ -32,7 +32,6 @@ export default class DocumentHelper {
                     "Ocp-Apim-Subscription-Key": process.env.APIM_KEY
                 }
             });
-            //console.log('response================================', response)
             return response
         } catch (err) {
             console.log('err================================', err)
@@ -42,7 +41,6 @@ export default class DocumentHelper {
 
     async fetchAnalyzedResult(resultId) {
         try {
-            console.log('result id==========================', resultId)
             //const url = `https://${endpoint}/formrecognizer/documentModels/${modelId}/analyzeResults/${resultId}?api-version=2023-02-28-preview`
             const url = `https://shanmukhadocrecognizer.cognitiveservices.azure.com/formrecognizer/documentModels/prebuilt-document/analyzeResults/${resultId}?api-version=2023-02-28-preview`
             const response = await axios({

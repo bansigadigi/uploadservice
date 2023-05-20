@@ -30,7 +30,7 @@ export default class AnalyzeDocumentController {
             const result = await new AnalyzeDocumentService().fetchAnalyzedResults(resultId)
             res.send({
                 status: "success",
-                message: result?.data,
+                message: result,
                 error: ""
             })
         } catch (err) {
