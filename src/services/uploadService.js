@@ -11,14 +11,22 @@ export default class AnalyzeDocumentService{
           const docHelper = new DocumentHelper()
           const fileExtention = req.file.mimetype
           const fileContent = req.file.buffer
-          const res = await docHelper.analyzeDocWithFormRecognizer(fileExtention,fileContent)
+          const res = await docHelper.analyzeDocWithFormRecognizer(req,fileExtention,fileContent)
           //resultId is required for fetching analyzed result
           const resultId = res?.headers['apim-request-id']
-          const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
-          await delay(2000) /// waiting 2 second.
-          const result = await docHelper.fetchAnalyzedResult(resultId)
-          return result
+          return resultId
         } catch(err){
+            throw err
+        }
+    }
+
+    async fetchAnalyzedResults(resultId) {
+        try{
+         const docHelper = new DocumentHelper()
+         const res = docHelper.fetchAnalyzedResult(resultId)
+         //console.log("result================================",result)
+         return res
+        } catch(error){
             throw err
         }
     }

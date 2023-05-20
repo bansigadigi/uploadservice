@@ -9,7 +9,8 @@ const router = express.Router()
 const inMemoryStorage = multer.memoryStorage()
 const uploadStrategy = multer({ storage: inMemoryStorage }).single('file')
 
-
-router.post('/', uploadStrategy, new AnalyzeDocumentController().analyzeDocument)
+const analyzeDocClass = new AnalyzeDocumentController()
+router.post('/', uploadStrategy, analyzeDocClass.analyzeDocument)
+router.get('/:id', analyzeDocClass.fetchAnalyzedResults)
 
 export{ router as upload };
