@@ -29,7 +29,6 @@ export default class AnalyzeDocumentService{
             const {paragraphs} = res?.data?.analyzeResult
             const result = paragraphs.filter((para)=>{
                 const regex = "^[0-9]{4}\\s[0-9]{4}\\s[0-9]{4}$"
-                console.log("para.content======================",para.content,para.content.match(regex))
                 return para.content.match(regex)
             })
             return result && result.length>0 ? result[0].content : "no addhar number extracted"
