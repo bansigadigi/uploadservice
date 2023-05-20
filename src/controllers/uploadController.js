@@ -9,10 +9,11 @@ export default class AnalyzeDocumentController {
     async analyzeDocument(req, res) {
         try {
             const result = await new AnalyzeDocumentService().AnalyzeDocument(req)
-            console.log('result===============', result)
             res.send({
                 status: "success",
-                message: result,
+                message: {
+                    "resultId":result
+                },
                 error: ""
             })
         } catch (err) {
@@ -30,7 +31,9 @@ export default class AnalyzeDocumentController {
             const result = await new AnalyzeDocumentService().fetchAnalyzedResults(resultId)
             res.send({
                 status: "success",
-                message: result,
+                message: {
+                    "aadharnumber":result
+                },
                 error: ""
             })
         } catch (err) {
